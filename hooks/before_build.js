@@ -4,13 +4,13 @@
  * @module to create modified appDelegate files in the xcode  project
 */
 
+const fs = require('fs');
+const path = require('path');
+
 module.exports = function (ctx) {
 
-    var fs = ctx.requireCordovaModule('fs');
-    var path = ctx.requireCordovaModule('path');
     var rootdir = "";
-    var myfs = require('fs');
-    var config = myfs.readFileSync("config.xml").toString();
+    var config = fs.readFileSync("config.xml").toString();
     var name = getValue(config, "name");
 
 
@@ -25,7 +25,7 @@ module.exports = function (ctx) {
 
     function directoryExists(path) {
         try {
-            return myfs.statSync(path).isDirectory();
+            return fs.statSync(path).isDirectory();
         }
         catch (e) {
             return false;
